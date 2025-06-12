@@ -22,18 +22,6 @@ export const getUsersById = async (req, res) => {
     }
   }
   
-export const getUserByName = async (req, res) => {
-    try {
-        const users = await User.findOne({
-          where: {
-            name: req.params.name,
-          },
-        });
-        res.status(200).json(users);
-    } catch (err) {
-        console.log({ error: err.message });
-    }
-  };
 export const createUsers = async (req, res) => {
   try {
     await User.create(req.body);
@@ -42,7 +30,6 @@ export const createUsers = async (req, res) => {
     console.log({ error: err.message });
   }
 };
-
 
 export const updateUser = async (req, res) => {
   try {

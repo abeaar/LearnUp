@@ -1,20 +1,21 @@
 import { DataTypes } from "sequelize";
 import dbContext from "../config/Database.js"; // Import the database connection
+import User from "./UserModel.js";
 
-const User = dbContext.define('user', {
+const Kelas = dbContext.define('kelas', {
   // Define the columns
-  name: DataTypes.STRING,
-  password: DataTypes.STRING,
-  email: DataTypes.STRING,
-  title: DataTypes.STRING,
-  category: DataTypes.STRING
+  nama: DataTypes.STRING,
+  kode_kelas: DataTypes.STRING,
+  id_pembuat: {
+    type: DataTypes.INTEGER, 
+    allowNull: false, 
+    references: {
+      model: User, 
+      key: "id", 
+    },
+  },
 },{
     freezeTableName: true
 });
 
-export default User;
-
-(async()=>{
-    await dbContext.sync();
-    console.log("User table created");
-})();
+export default Kelas;
